@@ -12,7 +12,7 @@ int Desenvolvedor::getQuantidadeDeProjetos() const {
 }
 
 float Desenvolvedor::calcularSalarioFinal() const {
-    return salarioBase + (500 * quantidadeDeProjetos);
+    return salarioBase + (500.0f * quantidadeDeProjetos);
 }
 
 void Desenvolvedor::exibirInformacoes() const {
