@@ -1,5 +1,5 @@
-#ifndef DESENVOLVEDOR_HPP
-#define DESENVOLVEDOR_HPP
+#ifndef DESENVOLVEDOR_H
+#define DESENVOLVEDOR_H
 
 #include "Funcionario.h"
 
