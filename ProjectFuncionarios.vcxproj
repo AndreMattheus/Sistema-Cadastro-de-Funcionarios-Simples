@@ -129,11 +129,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Desenvolvedor.h" />
+    <ClInclude Include="Estagiario.h" />
     <ClInclude Include="Funcionario.h" />
+    <ClInclude Include="Gerente.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Desenvolvedor.cpp" />
+    <ClCompile Include="Estagiario.cpp" />
     <ClCompile Include="Funcionario.cpp" />
+    <ClCompile Include="Gerente.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
