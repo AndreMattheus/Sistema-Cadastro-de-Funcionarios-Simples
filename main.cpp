@@ -15,9 +15,19 @@ int main() {
     std::vector<std::unique_ptr<Funcionario>> funcionarios;
     funcionarios.reserve(capacidade);
 
-    std::cout << "Cadastro de Funcionários (mínimo " << minimoCadastro << ", máximo " << capacidade << ")\n";
+    int quantidadeCadastro;
+    do {
+        std::cout << "Quantos funcionários deseja cadastrar? (mínimo " << minimoCadastro << ", máximo " << capacidade << "): ";
+        std::cin >> quantidadeCadastro;
 
-    while ((int)funcionarios.size() < minimoCadastro) {
+        if (quantidadeCadastro < minimoCadastro || quantidadeCadastro > capacidade) {
+            std::cout << "Quantidade inválida. Por favor, escolha entre " << minimoCadastro << " e " << capacidade << ".\n";
+        }
+    } while (quantidadeCadastro < minimoCadastro || quantidadeCadastro > capacidade);
+
+    std::cout << "\nCadastro de Funcionários\n";
+
+    while ((int)funcionarios.size() < quantidadeCadastro) {
         std::cout << "\nFuncionário #" << funcionarios.size() + 1 << "\n";
         std::cout << "Tipos disponíveis:\n";
         std::cout << "1 - Desenvolvedor\n";

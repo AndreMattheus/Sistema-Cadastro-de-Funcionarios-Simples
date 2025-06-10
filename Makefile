@@ -20,7 +20,3 @@ Gerente.o: Gerente.cpp Gerente.h Funcionario.h
 
 Estagiario.o: Estagiario.cpp Estagiario.h Funcionario.h
 	g++ -Wall -c Estagiario.cpp
-
-# Limpeza de arquivos objetos e executável
-clean:
-	rm -f *.o Funcionarios
