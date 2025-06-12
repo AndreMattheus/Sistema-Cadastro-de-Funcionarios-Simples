@@ -1,22 +1,25 @@
+#include <iostream>
+#include "Funcionario.h"
 #include "Estagiario.h"
+using namespace std;
 
-void Estagiario::setHorasTrabalhadas(int horas) {
-    horasTrabalhadas = horas;
+// Implementação dos métodos da classe Estagiário
+
+void Estagiario::setHoras(int horas) {
+    this->horasTrabalhadas = horas;
 }
 
-int Estagiario::getHorasTrabalhadas() const {
+int Estagiario::getHoras() {
     return horasTrabalhadas;
 }
 
-float Estagiario::calcularSalarioFinal() const{
-    
+float Estagiario::calcularSalarioFinal() {
     return salarioBase * (horasTrabalhadas / 160.0f);
-
 };
 
-void Estagiario::exibirInformacoes() const{
+void Estagiario::exibirInformacoes() {
     Funcionario::exibirInformacoes();
     cout << "Tipo: Estagiário " << endl;
-    cout << "Horas trabalhadas: " << horasTrabalhadas << endl;
+    cout << "Horas trabalhadas: " << getHoras() << endl;
     cout << "Salário final: " << calcularSalarioFinal() << endl;
 }

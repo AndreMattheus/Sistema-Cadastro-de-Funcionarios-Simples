@@ -1,25 +1,24 @@
-#include "Gerente.h"
 #include <iostream>
+#include "Gerente.h"
+using namespace std;
 
+// Implementação dos métodos da classe Gerente
 
-float Gerente::calcularSalarioFinal() const {
+float Gerente::calcularSalarioFinal() {
     return salarioBase + bonusMensal;
 }
 
-
-
 void Gerente::setBonusMensal(float bonus) {
-    bonusMensal = bonus;
+    this->bonusMensal = bonus;
 }
 
-float Gerente::getBonusMensal() const {
+float Gerente::getBonusMensal() {
     return bonusMensal;
 }
 
-void Gerente::exibirInformacoes() const{
+void Gerente::exibirInformacoes() {
     Funcionario::exibirInformacoes();
     cout << "Tipo: Gerente " << endl;
-    cout << "Bônus: " << bonusMensal << endl;
+    cout << "Bônus: " << getBonusMensal() << endl;
     cout << "Salário final: " << calcularSalarioFinal() << endl;
 }
-

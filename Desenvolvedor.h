@@ -1,19 +1,17 @@
 #ifndef DESENVOLVEDOR_H
 #define DESENVOLVEDOR_H
-
 #include "Funcionario.h"
 
 class Desenvolvedor : public Funcionario {
 private:
-    int quantidadeDeProjetos;
+    int qtdProjetos;
 
 public:
-    void setQuantidadeDeProjetos(int qtd);
-    int getQuantidadeDeProjetos() const;
+    void setQtdProjetos(int qtd);
+    int getQtdProjetos();
 
-    float calcularSalarioFinal() const override;
-    void exibirInformacoes() const override;
+    float calcularSalarioFinal();
+    void exibirInformacoes();
 };
 
 #endif
-

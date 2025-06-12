@@ -1,6 +1,5 @@
 #ifndef GERENTE_H
 #define GERENTE_H
-
 #include "Funcionario.h"
 
 class Gerente : public Funcionario {
@@ -8,10 +7,10 @@ class Gerente : public Funcionario {
         int bonusMensal;
     
     public:
-        float calcularSalarioFinal() const override;
-        void exibirInformacoes() const override;
+        float calcularSalarioFinal();
+        void exibirInformacoes();
 
-        float getBonusMensal() const;
+        float getBonusMensal();
         void setBonusMensal(float bonus);
 
 };

@@ -1,23 +1,25 @@
-#include "Desenvolvedor.h"
 #include <iostream>
+#include "Funcionario.h"
+#include "Desenvolvedor.h"
+using namespace std;
 
-// Implementação dos métodos de Desenvolvedor.h
+// Implementação dos métodos da classe Desenvolvedor
 
-void Desenvolvedor::setQuantidadeDeProjetos(int qtd) {
-    quantidadeDeProjetos = qtd;
+void Desenvolvedor::setQtdProjetos(int qtd) {
+    this->qtdProjetos = qtd;
 }
 
-int Desenvolvedor::getQuantidadeDeProjetos() const {
-    return quantidadeDeProjetos;
+int Desenvolvedor::getQtdProjetos() {
+    return qtdProjetos;
 }
 
-float Desenvolvedor::calcularSalarioFinal() const {
-    return salarioBase + (500.0f * quantidadeDeProjetos);
+float Desenvolvedor::calcularSalarioFinal() {
+    return salarioBase + (500.0f * qtdProjetos);
 }
 
-void Desenvolvedor::exibirInformacoes() const {
+void Desenvolvedor::exibirInformacoes() {
     Funcionario::exibirInformacoes();
     cout << "Tipo: Desenvolvedor" << endl;
-    cout << "Projetos: " << quantidadeDeProjetos << endl;
+    cout << "Projetos: " << getQtdProjetos() << endl;
     cout << "Salário final: " << calcularSalarioFinal() << endl;
 }
