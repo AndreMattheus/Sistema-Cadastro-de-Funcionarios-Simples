@@ -1,101 +1,98 @@
-// main.cpp
 #include <iostream>
-#include <vector>
-#include <memory>
-#include <limits>
-#include <iomanip>
 #include "Funcionario.h"
 #include "Desenvolvedor.h"
 #include "Gerente.h"
 #include "Estagiario.h"
 
+using namespace std;
+
 int main() {
-    const int capacidade = 10;
-    const int minimoCadastro = 6;
-    std::vector<std::unique_ptr<Funcionario>> funcionarios;
-    funcionarios.reserve(capacidade);
+    const int CAPACIDADE = 10;
+    Funcionario* funcionarios[CAPACIDADE] = { nullptr };
 
-    int quantidadeCadastro;
+    int quantidade;
     do {
-        std::cout << "Quantos funcionários deseja cadastrar? (mínimo " << minimoCadastro << ", máximo " << capacidade << "): ";
-        std::cin >> quantidadeCadastro;
+        cout << "Digite a quantidade de funcionários entre 6 e 10" << endl;
 
-        if (quantidadeCadastro < minimoCadastro || quantidadeCadastro > capacidade) {
-            std::cout << "Quantidade inválida. Por favor, escolha entre " << minimoCadastro << " e " << capacidade << ".\n";
-        }
-    } while (quantidadeCadastro < minimoCadastro || quantidadeCadastro > capacidade);
+        cin >> quantidade;
+        } while (quantidade < 6 || quantidade > CAPACIDADE);
 
-    std::cout << "\nCadastro de Funcionários\n";
-
-    while ((int)funcionarios.size() < quantidadeCadastro) {
-        std::cout << "\nFuncionário #" << funcionarios.size() + 1 << "\n";
-        std::cout << "Tipos disponíveis:\n";
-        std::cout << "1 - Desenvolvedor\n";
-        std::cout << "2 - Gerente\n";
-        std::cout << "3 - Estagiário\n";
+    for (int i = 0; i < quantidade; i++) {
         int tipo;
-        std::cout << "Escolha o tipo: ";
-        std::cin >> tipo;
+        cout << "Digite o tipo de funcionario (1-GERENTE, 2-DESENVOLVEDOR, 3-ESTAGIARIO): " << endl;
+        cin >> tipo;
 
         if (tipo < 1 || tipo > 3) {
-            std::cout << "Tipo inválido. Tente novamente.\n";
+            cout << "Tipo de funcionario invalido!" << endl;
+            i--;
             continue;
         }
 
-        // Dados comuns
+        string nome;
         int id;
-        std::string nome;
-        float salarioBase;
-        std::cout << "ID: ";
-        std::cin >> id;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Nome: ";
-        std::getline(std::cin, nome);
-        std::cout << "Salário base: ";
-        std::cin >> salarioBase;
+        float salario;
 
-        // Dados específicos do tipo
-        std::unique_ptr<Funcionario> f;
-        if (tipo == 1) {
-            int qtdProj;
-            std::cout << "Quantidade de projetos: ";
-            std::cin >> qtdProj;
-            auto dev = std::make_unique<Desenvolvedor>();
-            dev->setQuantidadeDeProjetos(qtdProj);
-            f = std::move(dev);
-        }
-        else if (tipo == 2) {
+        cout << "Digite o nome do funcionario: ";
+        cin >> nome;
+        cout << "Digite o id do funcionario: ";
+        cin >> id;
+        cout << "Digite o salario do funcionario: ";
+        cin >> salario;
+
+        switch (tipo) {
+        case 1: {
             float bonus;
-            std::cout << "Bônus mensal: ";
-            std::cin >> bonus;
-            auto ger = std::make_unique<Gerente>();
-            ger->setBonusMensal(bonus);
-            f = std::move(ger);
+            cout << "Digite o bonus mensal do gerente: ";
+            cin >> bonus;
+
+            auto* gerente = new Gerente();
+            gerente->setNome(nome);
+            gerente->setId(id);
+            gerente->setSalarioBase(salario);
+            gerente->setBonusMensal(bonus);
+            funcionarios[i] = gerente;
+            break;
         }
-        else {
+        case 2: {
+            int qtdProjetos;
+            cout << "Digite a quantidade de projetos do desenvolvedor: ";
+            cin >> qtdProjetos;
+
+            auto* desenvolvedor = new Desenvolvedor();
+            desenvolvedor->setNome(nome);
+            desenvolvedor->setId(id);
+            desenvolvedor->setSalarioBase(salario);
+            desenvolvedor->setQtdProjetos(qtdProjetos);
+            funcionarios[i] = desenvolvedor;
+            break;
+        }
+        case 3: {
             int horas;
-            std::cout << "Horas trabalhadas (no mês): ";
-            std::cin >> horas;
-            auto est = std::make_unique<Estagiario>();
-            est->setHorasTrabalhadas(horas);
-            f = std::move(est);
+            cout << "Digite a quantidade de horas trabalhadas do estagiario: ";
+            cin >> horas;
+
+            auto* estagiario = new Estagiario();
+            estagiario->setNome(nome);
+            estagiario->setId(id);
+            estagiario->setSalarioBase(salario);
+            estagiario->setHoras(horas);
+            funcionarios[i] = estagiario;
+            break;
         }
-
-        // Configuração dos dados comuns
-        f->setId(id);
-        f->setNome(nome);
-        f->setSalarioBase(salarioBase);
-
-        funcionarios.push_back(std::move(f));
-        std::cout << "Funcionário cadastrado com sucesso!\n";
+        }
     }
 
-    // Exibindo relatórios
-    std::cout << "\n=== Relatório de Funcionários ===\n";
-    for (const auto& f : funcionarios) {
-        f->exibirInformacoes();
-        std::cout << std::fixed << std::setprecision(2);
-        std::cout << "Salário final: R$ " << f->calcularSalarioFinal() << "\n\n";
+
+    cout << "Funcionarios cadastrados :" << endl;
+    for (int i = 0; i < quantidade; ++i) {
+        if (funcionarios[i]) {
+            funcionarios[i]->exibirInformacoes();
+            cout << endl;
+        }
+    }
+
+    for (int i = 0; i < quantidade; ++i) {
+        delete funcionarios[i];
     }
 
     return 0;
