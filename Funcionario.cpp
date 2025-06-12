@@ -1,13 +1,14 @@
-#include "Funcionario.h"
 #include <iostream>
+#include "Funcionario.h"
+using namespace std;
 
-// Implementação dos métodos de Funcionario.h
+// Implementação dos métodos da classe Funcionario
 
 void Funcionario::setNome(string nome) {
     this->nome = nome;
 }
 
-string Funcionario::getNome() const {
+string Funcionario::getNome() {
     return nome;
 }
 
@@ -15,7 +16,7 @@ void Funcionario::setSalarioBase(float salario) {
     this->salarioBase = salario;
 }
 
-float Funcionario::getSalarioBase() const {
+float Funcionario::getSalarioBase() {
     return salarioBase;
 }
 
@@ -23,12 +24,14 @@ void Funcionario::setId(int id) {
     this->id = id;
 }
 
-int Funcionario::getId() const {
+int Funcionario::getId() {
     return id;
 }
 
-void Funcionario::exibirInformacoes() const {
-    cout << "ID: " << id << endl;
-    cout << "Nome: " << nome << endl;
-    cout << "Salário base: " << salarioBase << endl;
+// Método virtual para exibir as informações
+
+void Funcionario::exibirInformacoes() {
+    cout << "ID: " << getId() << endl;
+    cout << "Nome: " << getNome() << endl;
+    cout << "Salário base: " << getSalarioBase() << endl;
 }
